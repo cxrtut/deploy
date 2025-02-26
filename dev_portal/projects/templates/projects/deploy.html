@@ -1,0 +1,19 @@
+{% extends 'projects/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Deploy Project - Developer Portal{% endblock %}
+{% block header %}Deploy a New Project{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-success btn-block">Deploy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Developer Portal{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-9ndCyUa6mY0QJ4V6Kv6bLO8eXJKRkBFOHEq9GqZrX1wUrE+0a04L5J2+5ZdN0n9O"
+    crossorigin="anonymous"
+    />
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Dev Portal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+                </li> -->
+                
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                </li> -->
+                <button data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2"
+                    onclick="window.location.href='{% url 'login' %}'">
+                    Login
+                </button>
+
+                <button data-mdb-ripple-init type="button" class="btn btn-primary me-3"
+                    onclick="window.location.href='{% url 'signup' %}'">
+                    Sign up
+                </button>
+
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar and Main Content -->
+    <div class="d-flex">
+        {% if user.is_authenticated %}
+        <nav class="sidebar bg-dark text-white p-3">
+            <h4 class="text-center mb-4">Menu</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'deploy' %}">Deploy</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+        {% endif %}
+        <main class="flex-grow-1 p-3">
+            <header class="bg-primary text-white p-3 mb-4 rounded">
+                <h1 class="h3">{% block header %}{% endblock %}</h1>
+            </header>
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center py-3 mt-4">
+        <div class="container">
+            <p>&copy; 2025 Developer Portal. All rights reserved.</p>
+            <p><a href="{% url 'home' %}" class="text-white">Home</a> | <a href="mailto:support@devportal.com" class="text-white">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

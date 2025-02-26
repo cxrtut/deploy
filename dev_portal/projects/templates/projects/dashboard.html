@@ -1,0 +1,25 @@
+{% extends 'projects/base.html' %}
+{% block title %}Home - Developer Portal{% endblock %}
+{% block header %}All Deployed Projects{% endblock %}
+{% block content %}
+<div class="row">
+    {% for project in projects %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            {% if project.picture %}
+            <img src="{{ project.picture.url }}" class="card-img-top" alt="{{ project.name }}">
+            {% endif %}
+            <div class="card-body text-center"> <!-- Added text-center class -->
+                <h5 class="card-title">{{ project.name }}</h5>
+                <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                <a href="{{ project.url }}" class="btn btn-primary d-block mx-auto" target="_blank">Visit Project</a> <!-- Centered button -->
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p class="text-muted text-center">No projects available yet.</p> <!-- Centered empty message -->
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

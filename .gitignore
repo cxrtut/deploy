@@ -1,0 +1,49 @@
+# General
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+
+# Environment Variables
+.env
+*.env
+
+# Django
+*.log
+staticfiles/
+media/
+
+# Virtual Environment
+venv/
+.env/
+.deploy/
+
+# IDEs and Editors
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.postgresql
+
+# Migrations
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Cache
+*.cache
+*.swp
+
+# Coverage and Test Reports
+.coverage
+htmlcov/
+.nyc_output/
+coverage.xml
